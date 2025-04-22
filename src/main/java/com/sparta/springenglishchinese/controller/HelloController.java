@@ -1,8 +1,10 @@
 package com.sparta.springenglishchinese.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -28,4 +30,15 @@ public class HelloController {
   }
 
 
+  @PutMapping("/api/put")
+  @ResponseBody
+  public String put() {
+    return "Put Method Request";
+  }
+
+  @DeleteMapping("/api/delete")
+  @ResponseBody
+  public String delete() {
+    return "Delete Method Request";
+  }
 }
