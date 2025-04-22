@@ -1,4 +1,4 @@
-package com.sparta.springenglishchinese;
+package com.sparta.springenglishchinese.calculator;
 
 
 import lombok.AllArgsConstructor;
