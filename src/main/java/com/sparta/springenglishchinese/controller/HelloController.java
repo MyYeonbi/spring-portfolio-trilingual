@@ -5,11 +5,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/api")
 public class HelloController {
-  @GetMapping("/api/hello")
+  @GetMapping("/hello")
   @ResponseBody
   public String hello() {
     return
@@ -17,26 +19,26 @@ public class HelloController {
   }
 
 
-  @GetMapping("/api/get")
+  @GetMapping("/get")
   @ResponseBody
   public String get() {
     return "Get Method Request";
   }
 
-  @PostMapping("/api/hello")
+  @PostMapping("/post")
   @ResponseBody
   public String post() {
     return "Post Method Request";
   }
 
 
-  @PutMapping("/api/put")
+  @PutMapping("/put")
   @ResponseBody
   public String put() {
     return "Put Method Request";
   }
 
-  @DeleteMapping("/api/delete")
+  @DeleteMapping("/delete")
   @ResponseBody
   public String delete() {
     return "Delete Method Request";
