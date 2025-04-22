@@ -23,7 +23,7 @@ public class HelloController {
     return "Get Method Request";
   }
 
-  @PostMapping("/api/post")
+  @PostMapping("/api/hello")
   @ResponseBody
   public String post() {
     return "Post Method Request";
