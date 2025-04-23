@@ -18,4 +18,9 @@ public class HtmlController {
 
   }
 
+
+  @GetMapping("/html/templates")
+  public String htmlTemplates() {
+    return "hello";
+  }
 }
