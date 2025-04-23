@@ -18,4 +18,13 @@ public class ResponseController {
   public String helloStringJson() {
     return "{\"name\":\"yeonbi\",\"age\":30}";
   }
+
+
+  //Content-Type : application/json
+  //Response Body
+  // {"name":"yeonbi","age":30}
+  @GetMapping("/json/class")
+  public Star helloClassJson() {
+    return new Star("yeonbi", 30);
+  }
 }
