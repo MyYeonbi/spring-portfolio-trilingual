@@ -23,7 +23,9 @@ public class ResponseController {
   //Content-Type : application/json
   //Response Body
   // {"name":"yeonbi","age":30}
+
   @GetMapping("/json/class")
+  @ResponseBody
   public Star helloClassJson() {
     return new Star("yeonbi", 30);
   }
