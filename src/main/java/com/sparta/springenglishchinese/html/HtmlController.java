@@ -12,4 +12,10 @@ public class HtmlController {
     return "hello.html";
   }
 
+  @GetMapping("/html/redirect")
+  public String htmlStatic() {
+    return "redirect:/hello.html";
+
+  }
+
 }
