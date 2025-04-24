@@ -34,7 +34,8 @@ public class RequestController {
 // MissingServletRequestParameterException: Required request parameter 'name' for method parameter type String is not present
   @GetMapping("/form/param")
   @ResponseBody
-  public String helloGetRequestParam(@RequestParam(required = false) String name, int age){
+  public String helloGetRequestParam(@RequestParam(required = false) String name,
+      @RequestParam(required = false) Integer age) {
       return String.format("Hello, @PathVariable, <br> name = %s, age = %d,", name,age);
   }
 
