@@ -2,6 +2,7 @@ package com.sparta.springenglishchinese.request;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,5 +54,20 @@ public class RequestController {
   public String helloPostRequestParam(@RequestParam String name, @RequestParam int age){
       return String.format("Hello, @PathVariable, <br> name = %s, age = %d,", name,age);
   }
+
+
+  // [Request sample]
+  // POST http://localhost:8080/hello/request/form/model
+  // Header
+  // Content type : application/x-www-form-urlencoded
+  // Body
+  // name=yeonbi&age=30
+
+  @PostMapping("/form/model")
+  @ResponseBody
+  public String helloRequestBodyForm(@ModelAttribute Star star) {
+      return String.format("Hello, @ModelAttribute, <br> (name = %s, age = %d)", star.name,star.age);
+  }
+
 
 }
