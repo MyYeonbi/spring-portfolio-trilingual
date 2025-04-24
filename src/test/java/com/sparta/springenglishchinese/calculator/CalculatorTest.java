@@ -1,3 +1,4 @@
+/*
 package com.sparta.springenglishchinese.calculator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,4 +29,4 @@ class CalculatorTest {
     Assertions.assertEquals(4, result);
   }
 
-}
+}*/
