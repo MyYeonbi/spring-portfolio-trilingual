@@ -20,4 +20,16 @@ public class JacksonTest {
 
   }
 
+  @Test
+  @DisplayName("JSON To Object : 기본 생성자 & (get OR set) Method 필요")
+  void test2() throws JsonProcessingException {
+    String json = "{\"name\":\"yeonbi\",\"age\":30}"; // JSON 타입의 String
+
+    ObjectMapper objectMapper = new ObjectMapper(); //Jackson 라이브러리의 ObjectMapper
+
+    Star star = objectMapper.readValue(json, Star.class);
+    System.out.println("star.getName = " + star.getName());
+    System.out.println("star.getAge() = " + star.getAge());
+  }
+
 }
