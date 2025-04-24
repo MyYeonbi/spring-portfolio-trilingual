@@ -29,4 +29,5 @@ public class ResponseController {
   public Star helloClassJson() {
     return new Star("yeonbi", 30);
   }
+
 }
