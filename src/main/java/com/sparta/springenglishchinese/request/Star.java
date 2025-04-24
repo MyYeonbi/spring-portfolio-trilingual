@@ -1,5 +1,8 @@
 package com.sparta.springenglishchinese.request;
 
+import lombok.Setter;
+
+@Setter
 public class Star {
 
   String name;
