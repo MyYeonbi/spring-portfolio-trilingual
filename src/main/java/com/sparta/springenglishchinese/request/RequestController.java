@@ -31,7 +31,7 @@ public class RequestController {
 
   // [Request sample]
   // Get http://localhost:8080/hello/request/form/param?name=yeonbi&age=30
-
+// MissingServletRequestParameterException: Required request parameter 'name' for method parameter type String is not present
   @GetMapping("/form/param")
   @ResponseBody
   public String helloGetRequestParam(@RequestParam String name, int age){
