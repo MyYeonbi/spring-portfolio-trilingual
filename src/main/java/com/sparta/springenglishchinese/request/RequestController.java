@@ -70,4 +70,15 @@ public class RequestController {
   }
 
 
+
+  // [Request sample]
+  // GET http://localhost:8080/hello/request/form/param/model?name=yeonbi&age=30
+
+  @GetMapping("/form/param/model")
+  @ResponseBody
+  public String helloRequestParam(@ModelAttribute Star star) {
+      return String.format("Hello, @ModelAttribute, <br> (name = %s, age = %d)", star.name,star.age);
+  }
+
+
 }
