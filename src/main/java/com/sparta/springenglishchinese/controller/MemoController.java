@@ -15,7 +15,8 @@ public class MemoController {
 
   @PostMapping("/memos")
   public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto){
-    return null;
+    // RequestDto -> Entity
+    Memo memo = new Memo( requestDto);
   }
 
 }

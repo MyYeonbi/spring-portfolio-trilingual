@@ -1,6 +1,7 @@
 package com.sparta.springenglishchinese.entity;
 
 
+import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,4 +15,8 @@ public class Memo {
   private String contents;
 
 
+  public Memo(MemoRequestDto requestDto) {
+    this.username = requestDto.getUsername();
+    this.contents = requestDto.getContents();
+  }
 }
