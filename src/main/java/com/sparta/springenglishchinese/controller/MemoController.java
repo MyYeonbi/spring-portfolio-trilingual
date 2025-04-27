@@ -1,6 +1,7 @@
 package com.sparta.springenglishchinese.controller;
 
 
+import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import org.springframework.web.bind.annotation.PostMapping;
