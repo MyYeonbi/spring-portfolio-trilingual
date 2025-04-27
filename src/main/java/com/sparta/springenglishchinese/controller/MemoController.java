@@ -27,12 +27,14 @@ public class MemoController {
      // Memo Max ID Check
     Long maxId = memoList.size() > 0 ? Collections.max(memoList.keySet()) + 1 : 1;
     memo.setId(maxId);
-    
+
      // DB 저장
     memoList.put(memo.getId(), memo);
 
     // Entity - > Response Dto
+    MemoResponseDto responseDto = new MemoResponseDto(memo);
 
+    return responseDto;
   }
 
 
