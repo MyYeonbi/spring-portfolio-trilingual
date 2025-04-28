@@ -6,7 +6,9 @@ import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,12 @@ public class MemoController {
     MemoResponseDto responseDto = new MemoResponseDto(memo);
 
     return responseDto;
+  }
+
+  @GetMapping("/memos")
+  public List<MemoResponseDto> getMemos(){
+    // Map To List
+    List<MemoResponseDto> responseList = memoList.values().stream().map(MemoResponseDto::new).toList();
   }
 
 
