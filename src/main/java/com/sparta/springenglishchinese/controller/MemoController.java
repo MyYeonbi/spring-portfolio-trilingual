@@ -43,6 +43,8 @@ public class MemoController {
   public List<MemoResponseDto> getMemos(){
     // Map To List
     List<MemoResponseDto> responseList = memoList.values().stream().map(MemoResponseDto::new).toList();
+
+    return responseList;
   }
 
 
