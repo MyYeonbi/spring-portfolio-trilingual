@@ -4,10 +4,12 @@ package com.sparta.springenglishchinese.controller;
 import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
-import java.util.Collections;
-import java.util.HashMap;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,25 +23,43 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MemoController {
 
+  private final JdbcTemplate jdbcTemplate;
 
-  private final Map<Long, Memo> memoList = new HashMap<>();
+  public MemoController(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
+
+
+
 
   @PostMapping("/memos")
   public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
     // RequestDto -> Entity
     Memo memo = new Memo(requestDto);
 
-    // Memo Max ID Check
-    Long maxId = memoList.size() > 0 ? Collections.max(memoList.keySet()) + 1 : 1;
-    memo.setId(maxId);
-
     // DB 저장
-    memoList.put(memo.getId(), memo);
+    KeyHolder keyHolder = new GeneratedKeyHolder(); // 기본 키를 반환받기 위한 객체
 
-    // Entity - > Response Dto
-    MemoResponseDto responseDto = new MemoResponseDto(memo);
+    String sql = "INSERT INTO memo (username, contents) VALUES (?, ?)";
+    jdbcTemplate.update(con -> {
+      PreparedStatement preparedStatement = con.prepareStatement(sql,
+          Statement.RETURN_GENERATED_KEYS);
 
-    return responseDto;
+      preparedStatement.setString(1, memo.getUsername());
+      preparedStatement.setString(2, memo.getContents());
+      return preparedStatement;
+
+    },
+        keyHolder);
+
+    // DB Insert 후 받아온 기본키 확인
+    Long id = keyHolder.getKey().longValue();
+    memo.setId(id);
+
+    // Entity -> ResponseDTo
+    MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
+
+    return memoResponseDto;
   }
 
   @GetMapping("/memos")
