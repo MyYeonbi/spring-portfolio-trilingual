@@ -71,21 +71,7 @@ public class MemoController {
     }
   }
 
-  private Memo findById(Long id) {
-    // DB조회
-    String sql = "SELECT * FROM memo WHERE id = ?";
 
-    return jdbcTemplate.query(sql, resultSet -> {
-      if (resultSet.next()) {
-        Memo memo = new Memo();
-        memo.setUsername(resultSet.getString("username"));
-        memo.setContents(resultSet.getString("contents"));
-        return memo;
-      }else{
-        return null;
-      }
-    },id);
-  }
 
 
 }
