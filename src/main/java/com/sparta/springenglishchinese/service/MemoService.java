@@ -99,4 +99,19 @@ public class MemoService {
       }
     },id);
   }
+
+  public Long deleteMemo(Long id) {
+    // 해당 메모가 DB에 존재하는지 확인
+    Memo memo = findById(id);
+    if (memo != null) {
+      // 메모 삭제
+      String sql = "DELETE FROM memo WHERE id = ?";
+      jdbcTemplate.update(sql, id);
+
+      return id;
+    } else {
+      throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다. ");
+    }
+
+  }
 }
