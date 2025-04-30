@@ -51,17 +51,9 @@ public class MemoController {
 
   @PutMapping("/memos/{id}")
   public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-    // 해당 메모가 DB에 존재하는지 확인
-    Memo memo = findById(id);
-    if (memo != null) {
-      // memo 내용 수정
-      String sql = "UPDATE memo SET username = ?, contents = ?  WHERE id = ?";
-      jdbcTemplate.update(sql, requestDto.getUsername(), requestDto.getContents(), id);
+    MemoService memoService = new MemoService(jdbcTemplate);
+    return memoService.updateMemo(id, requestDto);
 
-      return id;
-    } else {
-      throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다. ");
-    }
   }
 
   @DeleteMapping("/memos/{id}")
