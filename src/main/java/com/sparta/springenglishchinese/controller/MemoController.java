@@ -4,15 +4,12 @@ package com.sparta.springenglishchinese.controller;
 import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
-import java.sql.PreparedStatement;
+import com.sparta.springenglishchinese.service.MemoService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,32 +34,15 @@ public class MemoController {
 
   @PostMapping("/memos")
   public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
-    // RequestDto -> Entity
-    Memo memo = new Memo(requestDto);
 
-    // DB 저장
-    KeyHolder keyHolder = new GeneratedKeyHolder(); // 기본 키를 반환받기 위한 객체
+    MemoService memoService = new MemoService(); //인스턴스화
+    return memoService.createMemo(requestDto); //memoService에 있는 createMemo메서드에서 전부다 비지니스 로직이 수행되고 리턴이 되면 그값을 바로 리턴하여  클라이언트에게 전달.
 
-    String sql = "INSERT INTO memo (username, contents) VALUES (?, ?)";
-    jdbcTemplate.update(con -> {
-      PreparedStatement preparedStatement = con.prepareStatement(sql,
-          Statement.RETURN_GENERATED_KEYS);
 
-      preparedStatement.setString(1, memo.getUsername());
-      preparedStatement.setString(2, memo.getContents());
-      return preparedStatement;
 
-    },
-        keyHolder);
 
-    // DB Insert 후 받아온 기본키 확인
-    Long id = keyHolder.getKey().longValue();
-    memo.setId(id);
 
-    // Entity -> ResponseDTo
-    MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
 
-    return memoResponseDto;
   }
 
   @GetMapping("/memos")
