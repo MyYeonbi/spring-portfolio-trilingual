@@ -5,11 +5,8 @@ import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import com.sparta.springenglishchinese.service.MemoService;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,20 +44,9 @@ public class MemoController {
 
   @GetMapping("/memos")
   public List<MemoResponseDto> getMemos() {
-    // DB조회
-    String sql = "SELECT * FROM memo";
+    MemoService memoService = new MemoService(jdbcTemplate);
+    return memoService.getMemos();
 
-    return jdbcTemplate.query(sql, new RowMapper<MemoResponseDto>() {
-
-      @Override
-      public MemoResponseDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-        // SQL의 결과로 받아온 Memo 데이터들을 MemoResponseDTO 타입으로 변환해줄 메서드
-        Long id = rs.getLong("id");
-        String username = rs.getString("username");
-        String contents = rs.getString("contents");
-        return new MemoResponseDto(id, username, contents);
-      }
-    });
   }
 
   @PutMapping("/memos/{id}")
