@@ -35,7 +35,7 @@ public class MemoController {
   @PostMapping("/memos")
   public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
 
-    MemoService memoService = new MemoService(); //인스턴스화
+    MemoService memoService = new MemoService(jdbcTemplate); //인스턴스화
     return memoService.createMemo(requestDto); //memoService에 있는 createMemo메서드에서 전부다 비지니스 로직이 수행되고 리턴이 되면 그값을 바로 리턴하여  클라이언트에게 전달.
 
 
