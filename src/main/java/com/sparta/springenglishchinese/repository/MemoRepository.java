@@ -67,6 +67,15 @@ public class MemoRepository {
     jdbcTemplate.update(sql, requestDto.getUsername(), requestDto.getContents(), id);
   }
 
+
+
+  public void delete(Long id) {
+    String sql = "DELETE FROM memo WHERE id = ?";
+    jdbcTemplate.update(sql, id);
+  }
+
+
+
   public Memo findById(Long id) {
     // DB조회
     String sql = "SELECT * FROM memo WHERE id = ?";
