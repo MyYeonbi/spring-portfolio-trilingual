@@ -8,3 +8,19 @@ https://yeonbikim.tistory.com/275
 ### 2. 이 전략을 실행하기 위해 생각한 계획 
 ### 3. 이 과정을 통해 내가 실제로 배운 것들 
 ### 4. 내가 증명하고 싶은 역량
+
+------------------------------------
+
+You can find the following details in the link below:
+
+https://yeonbikim.tistory.com/276
+
+### 1. Why I started writing commit messages in English and Chinese
+
+### 2. The plan I devised to implement this strategy
+
+### 3. What I actually learned through this process
+
+### 4. The skills I aim to demonstrate through it
+
+

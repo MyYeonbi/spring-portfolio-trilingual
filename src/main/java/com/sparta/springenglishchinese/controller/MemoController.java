@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MemoController {
 
-  private final JdbcTemplate jdbcTemplate;
+  private final MemoService memoService;
 
   public MemoController(JdbcTemplate jdbcTemplate) {
-    this.jdbcTemplate = jdbcTemplate;
+    this.memoService = new MemoService(jdbcTemplate);
   }
 
 
@@ -31,33 +31,23 @@ public class MemoController {
   @PostMapping("/memos")
   public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
 
-    MemoService memoService = new MemoService(jdbcTemplate); //인스턴스화
     return memoService.createMemo(requestDto); //memoService에 있는 createMemo메서드에서 전부다 비지니스 로직이 수행되고 리턴이 되면 그값을 바로 리턴하여  클라이언트에게 전달.
-
-
-
-
-
 
   }
 
+
   @GetMapping("/memos")
   public List<MemoResponseDto> getMemos() {
-    MemoService memoService = new MemoService(jdbcTemplate);
     return memoService.getMemos();
-
   }
 
   @PutMapping("/memos/{id}")
   public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-    MemoService memoService = new MemoService(jdbcTemplate);
     return memoService.updateMemo(id, requestDto);
-
   }
 
   @DeleteMapping("/memos/{id}")
   public Long deleteMemo(@PathVariable Long id) {
-    MemoService memoService = new MemoService(jdbcTemplate);
     return memoService.deleteMemo(id);
 
 
