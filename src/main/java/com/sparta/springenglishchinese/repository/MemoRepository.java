@@ -1,5 +1,6 @@
 package com.sparta.springenglishchinese.repository;
 
+import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import java.sql.PreparedStatement;
@@ -57,5 +58,28 @@ public class MemoRepository {
         return new MemoResponseDto(id, username, contents);
       }
     });
+  }
+
+
+
+  public void update(Long id, MemoRequestDto requestDto) {
+    String sql = "UPDATE memo SET username = ?, contents = ?  WHERE id = ?";
+    jdbcTemplate.update(sql, requestDto.getUsername(), requestDto.getContents(), id);
+  }
+
+  public Memo findById(Long id) {
+    // DB조회
+    String sql = "SELECT * FROM memo WHERE id = ?";
+
+    return jdbcTemplate.query(sql, resultSet -> {
+      if (resultSet.next()) {
+        Memo memo = new Memo();
+        memo.setUsername(resultSet.getString("username"));
+        memo.setContents(resultSet.getString("contents"));
+        return memo;
+      }else{
+        return null;
+      }
+    },id);
   }
 }
