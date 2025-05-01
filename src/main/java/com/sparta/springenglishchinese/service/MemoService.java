@@ -5,14 +5,13 @@ import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import com.sparta.springenglishchinese.repository.MemoRepository;
 import java.util.List;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class MemoService {
 
   private final MemoRepository memoRepository;
 
-  public MemoService(JdbcTemplate jdbcTemplate) {
-    this.memoRepository = new MemoRepository(jdbcTemplate);
+  public MemoService(MemoRepository memoRepository) {
+    this.memoRepository = memoRepository;
   }
 
   public MemoResponseDto createMemo(MemoRequestDto requestDto) {
