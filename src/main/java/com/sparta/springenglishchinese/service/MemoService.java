@@ -13,10 +13,14 @@ public class MemoService {
 
   private final MemoRepository memoRepository;
 
-  @Autowired
-  public MemoService(MemoRepository memoRepository) {
+  public void setDi (MemoRepository memoRepository) {
     this.memoRepository = memoRepository;
   }
+
+/*  @Autowired
+  public MemoService(MemoRepository memoRepository) {
+    this.memoRepository = memoRepository;
+  }*/
 
   public MemoResponseDto createMemo(MemoRequestDto requestDto) {
   // 이 메서드의 리턴값이 바로 컨트롤러의 createMemo 리턴값이 되어버리므로 이 메서드도 createMemo 메서드의 반환유형과 같게 MemoResponseDto가 되어야 함.
