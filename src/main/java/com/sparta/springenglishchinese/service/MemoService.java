@@ -13,6 +13,8 @@ public class MemoService {
 
   private final MemoRepository memoRepository;
 
+
+  @Autowired
   public void setDi (MemoRepository memoRepository) {
     this.memoRepository = memoRepository;
   }
