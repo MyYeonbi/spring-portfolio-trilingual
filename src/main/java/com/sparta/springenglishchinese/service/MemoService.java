@@ -11,13 +11,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class MemoService {
 
-  private final MemoRepository memoRepository;
-
-
   @Autowired
-  public void setDi (MemoRepository memoRepository) {
-    this.memoRepository = memoRepository;
-  }
+  private MemoRepository memoRepository;
+
+
+
 
 /*  @Autowired
   public MemoService(MemoRepository memoRepository) {
