@@ -5,6 +5,7 @@ import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import com.sparta.springenglishchinese.repository.MemoRepository;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +13,7 @@ public class MemoService {
 
   private final MemoRepository memoRepository;
 
+  @Autowired
   public MemoService(MemoRepository memoRepository) {
     this.memoRepository = memoRepository;
   }
