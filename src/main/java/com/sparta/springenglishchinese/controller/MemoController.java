@@ -5,7 +5,6 @@ import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.service.MemoService;
 import java.util.List;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +22,7 @@ public class MemoController {
 
 
   public MemoController(MemoService memoService) {
-    this.memoService = MemoService;
+    this.memoService = memoService;
   }
 
 
