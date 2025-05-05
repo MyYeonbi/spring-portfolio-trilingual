@@ -5,16 +5,22 @@ import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
 import com.sparta.springenglishchinese.repository.MemoRepository;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
+
 public class MemoService {
 
 
 
 private final MemoRepository memoRepository;
+
+public MemoService(ApplicationContext context){
+  // 1. 'Bean'이름으로 가져오기
+  MemoRepository memoRepository = (MemoRepository) context.getBean("memoRepository");
+  this.memoRepository = memoRepository;
+}
 
 
 
