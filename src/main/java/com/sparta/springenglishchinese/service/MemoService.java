@@ -6,10 +6,10 @@ import com.sparta.springenglishchinese.entity.Memo;
 import com.sparta.springenglishchinese.repository.MemoRepository;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
 
+@Service
 public class MemoService {
 
 
