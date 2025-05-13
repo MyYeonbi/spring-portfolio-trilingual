@@ -36,4 +36,15 @@ public class TransactionTest {
 
     em.persist(memo);  // 영속성 컨텍스트에 메모 Entity 객체를 저장합니다.
   }
+
+
+  @Transactional
+  public Memo createMemo(EntityManager em) {
+    Memo memo = em.find(Memo.class, 1);
+    memo.setUsername("Robbie");
+    memo.setContents("@Transactional 전파 테스트 중!");
+
+    System.out.println("createMemo 메서드 종료");
+    return memo;
+  }
 }
