@@ -3,6 +3,7 @@ package com.sparta.springenglishchinese.repository;
 import com.sparta.springenglishchinese.dto.MemoRequestDto;
 import com.sparta.springenglishchinese.dto.MemoResponseDto;
 import com.sparta.springenglishchinese.entity.Memo;
+import jakarta.persistence.EntityManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class MemoRepository {
@@ -92,5 +94,15 @@ public class MemoRepository {
         return null;
       }
     },id);
+  }
+
+  @Transactional
+  public Memo createMemo(EntityManager em) {
+    Memo memo = em.find(Memo.class, 1);
+    memo.setUsername("Robbie");
+    memo.setContents("@Transactional 전파 테스트 중!");
+
+    System.out.println("createMemo 메서드 종료");
+    return memo;
   }
 }
