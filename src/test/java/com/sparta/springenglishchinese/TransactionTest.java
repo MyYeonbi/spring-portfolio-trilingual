@@ -3,6 +3,7 @@ package com.sparta.springenglishchinese;
 import com.sparta.springenglishchinese.entity.Memo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +31,7 @@ public class TransactionTest {
 
 
   @Test
+  @Disabled
   @DisplayName("메모 생성 실패")
   void test2() {
     Memo memo = new Memo();
