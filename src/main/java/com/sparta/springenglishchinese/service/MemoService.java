@@ -51,7 +51,7 @@ public MemoService(ApplicationContext context){
 
   public List<MemoResponseDto> getMemos() {
     // DB조회
-    return memoRepository.findAll();
+    return memoRepository.findAll().stream().map(MemoResponseDto::new).toList();
 
 
   }
@@ -59,17 +59,13 @@ public MemoService(ApplicationContext context){
   public Long updateMemo(Long id, MemoRequestDto requestDto) {
 
     // 해당 메모가 DB에 존재하는지 확인
-    Memo memo = memoRepository.findById(id);
-    if (memo != null) {
+    Memo memo = findMemo(id);
+
       // memo 내용 수정
-      memoRepository.update(id, requestDto);
-
-
+      memo.update(requestDto);
 
       return id;
-    } else {
-      throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다. ");
-    }
+
   }
 
 
@@ -77,17 +73,18 @@ public MemoService(ApplicationContext context){
 
   public Long deleteMemo(Long id) {
 
-
     // 해당 메모가 DB에 존재하는지 확인
-    Memo memo = memoRepository.findById(id);
-    if (memo != null) {
+  Memo memo = findMemo(id);
+
       // memo 내용 삭제
-      memoRepository.delete(id);
+      memoRepository.delete(memo);
       return id;
-    } else {
-      throw new IllegalArgumentException("선택한 메모는 존재하지 않습니다. ");
-    }
 
+  }
 
+  private Memo findMemo(Long id) {
+    return memoRepository.findById(id).orElseThrow(() ->
+        new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
+    );
   }
 }
