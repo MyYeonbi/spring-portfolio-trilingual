@@ -7,6 +7,7 @@ import com.sparta.springenglishchinese.repository.MemoRepository;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -56,6 +57,8 @@ public MemoService(ApplicationContext context){
 
   }
 
+
+  @Transactional
   public Long updateMemo(Long id, MemoRequestDto requestDto) {
 
     // 해당 메모가 DB에 존재하는지 확인
