@@ -57,7 +57,7 @@ public MemoService(ApplicationContext context){
 
 
   public List<MemoResponseDto> getMemosByKeyword(String keyword) {
-    return memoRepository.findAll().stream().map(MemoResponseDto::new).toList()
+    return memoRepository.findAllByContentsContainsOrderByModifiedAtDesc(keyword).stream().map(MemoResponseDto::new).toList()
   }
 
   @Transactional
